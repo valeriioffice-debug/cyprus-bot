@@ -52,28 +52,12 @@ def build_hermes_status(total_cancelled, total_delayed):
 
 def update_today_json():
     try:
-        lca_html = fetch_page(LCA_URL)
-        pfo_html = fetch_page(PFO_URL)
+import json
 
-        lca = parse_hermes_page(lca_html)
-        pfo = parse_hermes_page(pfo_html)
+with open("today_data.json", "r", encoding="utf-8") as f:
+    existing_data = json.load(f)
 
-        total_cancelled = lca["cancelled"] + pfo["cancelled"]
-        total_delayed = lca["delayed"] + pfo["delayed"]
-
-        airport_status, disruption_level, note = build_hermes_status(
-            total_cancelled,
-            total_delayed
-        )
-
-    except Exception as e:
-        print("Hermes fetch failed:", e)
-
-        total_cancelled = 0
-        total_delayed = 0
-        airport_status = "unknown"
-        disruption_level = "low"
-        note = "данные временно недоступны"
+hermes_data = existing_data.get("hermes", {})
 
     today_data = {
         "date": datetime.now().strftime("%Y-%m-%d"),
