@@ -25,7 +25,7 @@ print("Bot is running...")
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
     if message.text == "📅 Сегодня":
-    bot.send_message(
+        bot.send_message(
         message.chat.id,
         "📅 Сегодня\n"
         "EUROCONTROL: без резких негативных сигналов\n"
