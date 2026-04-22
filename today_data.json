@@ -1,0 +1,20 @@
+{
+  "date": "2026-04-22",
+  "eurocontrol": {
+    "traffic_status": "stable",
+    "traffic_change_pct": -3,
+    "pressure_level": "medium",
+    "note": "умеренное давление"
+  },
+  "hermes": {
+    "airport_status": "normal",
+    "cancelled_flights": 2,
+    "delayed_flights": 7,
+    "disruption_level": "low",
+    "note": "массовых сбоев нет"
+  },
+  "summary": {
+    "risk_level": "yellow",
+    "message": "Рынок под давлением, но без системного сбоя"
+  }
+}
