@@ -15,3 +15,6 @@ def status(message):
 
 print("Bot is running...")
 bot.infinity_polling()
+@bot.message_handler(commands=['status'])
+def status(message):
+    bot.reply_to(message, "Бот работает стабильно ✅")
