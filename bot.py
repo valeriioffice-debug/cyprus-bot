@@ -25,7 +25,7 @@ print("Bot is running...")
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
     if message.text == "📅 Сегодня":
-    bot.send_message(
+        bot.send_message(
         message.chat.id,
         "📅 Сегодня\n"
         "• Проверить EUROCONTROL\n"
@@ -34,7 +34,7 @@ def handle_message(message):
         "• Сформировать короткий вывод: спокойно / риск / тревога"
     )
     elif message.text == "📈 Неделя":
-    bot.send_message(
+        bot.send_message(
         message.chat.id,
         "📈 Неделя\n"
         "• Проверить Lufthansa / KLM / easyJet / Wizz / Jet2 / TUI\n"
@@ -43,7 +43,7 @@ def handle_message(message):
         "• Сделать вывод по рынку"
     )
     elif message.text == "🗓 Месяц":
-    bot.send_message(
+        bot.send_message(
         message.chat.id,
         "🗓 Месяц\n"
         "• Взять данные Hermes Airports\n"
