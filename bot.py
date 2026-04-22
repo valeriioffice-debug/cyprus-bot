@@ -75,7 +75,7 @@ def handle_message(message):
         # "🟡 Смешанный (рост UK, слабость ЕС)\n\n"
         # "📌 Вывод:\n"
         # "Рынок держится за счёт UK, континентальная Европа слабеет"
-    )
+    # )
     # elif message.text == "🗓 Месяц":
         # bot.send_message(
         # message.chat.id,
@@ -94,7 +94,7 @@ def handle_message(message):
         # "🟡 Снижение континентальной Европы компенсируется UK\n\n"
         # "📌 Вывод:\n"
         # "Рынок ослабевает, но без резкого падения"
-    )
+    # )
     elif message.text == "/status":
         bot.send_message(message.chat.id, "Бот работает стабильно ✅")
 bot.infinity_polling()
