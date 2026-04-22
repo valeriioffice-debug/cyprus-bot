@@ -1,4 +1,4 @@
-today = datetime.now().strftime("%d.%m.%Y")
+from datetime import datetime
 import telebot
 from telebot import types
 import os
