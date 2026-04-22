@@ -10,10 +10,10 @@ bot = telebot.TeleBot(TOKEN)
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
-    btn1 = types.KeyboardButton("📊 Статус")
-    btn2 = types.KeyboardButton("ℹ️ О боте")
+    btn1 = types.KeyboardButton("📅 Сегодня")
+btn2 = types.KeyboardButton("📈 Неделя")
+btn3 = types.KeyboardButton("🗓 Месяц")
 
-    markup.add(btn1, btn2)
 
     bot.send_message(message.chat.id, "Выберите действие 👇", reply_markup=markup)
 
