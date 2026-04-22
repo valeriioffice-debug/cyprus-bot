@@ -25,13 +25,13 @@ print("Bot is running...")
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
     if message.text == "📅 Сегодня":
-        bot.send_message(
+    bot.send_message(
         message.chat.id,
         "📅 Сегодня\n"
-        "• Проверить EUROCONTROL\n"
-        "• Проверить live board Hermes\n"
-        "• Посмотреть отмены, задержки и снижение частот\n"
-        "• Сформировать короткий вывод: спокойно / риск / тревога"
+        "EUROCONTROL: без резких негативных сигналов\n"
+        "Hermes live board: массовых сбоев не видно\n"
+        "Отмены/задержки: точечно, без системного сбоя\n"
+        "Вывод: 🟡 наблюдаем, но признаков кризиса нет"
     )
     elif message.text == "📈 Неделя":
         bot.send_message(
