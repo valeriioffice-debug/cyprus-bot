@@ -25,20 +25,22 @@ print("Bot is running...")
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
     if message.text == "📅 Сегодня":
-        bot.send_message(
-        message.chat.id,
-        "📅 Сегодня\n\n"
-        "✈️ EUROCONTROL:\n"
-        "✔ Трафик стабильный\n"
-        "❗ Германия: -12% частоты\n\n"
-        "🛫 Hermes:\n"
-        "✔ Массовых сбоев нет\n"
-        "❗ Небольшие задержки UK\n\n"
-        "📊 Отмены:\n"
-        "• Точечные, без системы\n\n"
-        "📌 Вывод:\n"
-        "🟡 Рынок стабильный, но под давлением"
-    )
+    today = datetime.now().strftime("%d.%m.%Y")
+
+    bot.send_message(
+    message.chat.id,
+    f"📅 Сегодня ({today})\n\n"
+    "✈️ EUROCONTROL:\n"
+    "✔ Трафик стабильный\n"
+    "❗ Германия: -12% частоты\n\n"
+    "🛫 Hermes:\n"
+    "✔ Массовых сбоев нет\n"
+    "❗ Небольшие задержки UK\n\n"
+    "📊 Отмены:\n"
+    "• Точечные, без системы\n\n"
+    "📌 Вывод:\n"
+    "🟡 Рынок стабильный, но под давлением"
+)
     elif message.text == "📈 Неделя":
         bot.send_message(
         message.chat.id,
