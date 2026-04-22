@@ -25,23 +25,37 @@ def status(message):
 print("Bot is running...")
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
+    import json
     if message.text == "📅 Сегодня":
-        today = datetime.now().strftime("%d.%m.%Y")
+        with open("today_data.json", "r", encoding="utf-8") as f:
+         data = json.load(f)
 
-        bot.send_message(
-    message.chat.id,
-    f"📅 Сегодня ({today})\n\n"
-    "✈️ EUROCONTROL:\n"
-    "✔ Трафик стабильный\n"
-    "❗ Германия: -12% частоты\n\n"
-    "🛫 Hermes:\n"
-    "✔ Массовых сбоев нет\n"
-    "❗ Небольшие задержки UK\n\n"
-    "📊 Отмены:\n"
-    "• Точечные, без системы\n\n"
-    "📌 Вывод:\n"
-    "🟡 Рынок стабильный, но под давлением"
-)
+    date = data["date"]
+
+    euro = data["eurocontrol"]
+    hermes = data["hermes"]
+    summary = data["summary"]
+
+    bot.send_message(
+        message.chat.id,
+        f"📅 Сегодня ({date})\n\n"
+
+        f"✈️ EUROCONTROL:\n"
+        f"Статус: {euro['traffic_status']}\n"
+        f"Изменение: {euro['traffic_change_pct']}%\n"
+        f"Давление: {euro['pressure_level']}\n"
+        f"Комментарий: {euro['note']}\n\n"
+
+        f"🛫 Hermes:\n"
+        f"Статус: {hermes['airport_status']}\n"
+        f"Отмены: {hermes['cancelled_flights']}\n"
+        f"Задержки: {hermes['delayed_flights']}\n"
+        f"Сбои: {hermes['disruption_level']}\n"
+        f"Комментарий: {hermes['note']}\n\n"
+
+        f"📌 Вывод:\n"
+        f"{summary['message']}"
+    )
     elif message.text == "📈 Неделя":
         bot.send_message(
         message.chat.id,
