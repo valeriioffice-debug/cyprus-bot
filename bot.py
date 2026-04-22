@@ -95,7 +95,7 @@ def handle_message(message):
         # "📌 Вывод:\n"
         # "Рынок ослабевает, но без резкого падения"
     # )
-    elif message.text == "/status":
+    if message.text == "/status":
         bot.send_message(message.chat.id, "Бот работает стабильно ✅")
 bot.infinity_polling()
 @bot.message_handler(commands=['status'])
