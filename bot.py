@@ -27,6 +27,8 @@ print("Bot is running...")
 def handle_message(message):
     import json
     if message.text == "📅 Сегодня":
+        import subprocess
+        subprocess.run(["python", "update_today.py"])
         with open("today_data.json", "r", encoding="utf-8") as f:
          data = json.load(f)
 
