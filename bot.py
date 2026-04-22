@@ -42,11 +42,22 @@ def handle_message(message):
     elif message.text == "📈 Неделя":
         bot.send_message(
         message.chat.id,
-        "📈 Неделя\n"
-        "• Проверить Lufthansa / KLM / easyJet / Wizz / Jet2 / TUI\n"
-        "• Найти route changes и cuts\n"
-        "• Оценить тренд (рост / падение)\n"
-        "• Сделать вывод по рынку"
+        "📈 Неделя\n\n"
+        "✈️ Авиакомпании:\n"
+        "Lufthansa:\n"
+        "✔ Без значимых изменений\n\n"
+        "KLM:\n"
+        "✔ Стабильно\n\n"
+        "easyJet:\n"
+        "✔ Увеличение рейсов UK\n\n"
+        "Wizz Air:\n"
+        "❗ Снижение частот по Восточной Европе\n\n"
+        "Jet2 / TUI:\n"
+        "✔ Сезонный рост\n\n"
+        "📊 Тренд:\n"
+        "🟡 Смешанный (рост UK, слабость ЕС)\n\n"
+        "📌 Вывод:\n"
+        "Рынок держится за счёт UK, континентальная Европа слабеет"
     )
     elif message.text == "🗓 Месяц":
         bot.send_message(
