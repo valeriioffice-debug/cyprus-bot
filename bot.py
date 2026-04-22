@@ -11,12 +11,12 @@ def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
     btn1 = types.KeyboardButton("📅 Сегодня")
-btn2 = types.KeyboardButton("📈 Неделя")
-btn3 = types.KeyboardButton("🗓 Месяц")
+    btn2 = types.KeyboardButton("📈 Неделя")
+    btn3 = types.KeyboardButton("🗓 Месяц")
 
+    markup.add(btn1, btn2, btn3)
 
     bot.send_message(message.chat.id, "Выберите действие 👇", reply_markup=markup)
-
 @bot.message_handler(commands=['status'])
 def status(message):
     bot.send_message(message.chat.id, "Статус: работает ✅")
