@@ -2,11 +2,37 @@ from datetime import datetime
 import telebot
 from telebot import types
 import os
-
+import json
 TOKEN = os.getenv("BOT_TOKEN")
 
 bot = telebot.TeleBot(TOKEN)
+@bot.message_handler(commands=['hermes'])
+def update_hermes(message):
+    try:
+        parts = message.text.split()
 
+        cancelled = int(parts[1])
+        delayed = int(parts[2])
+        status = parts[3]
+
+        with open("today_data.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        data["hermes"]["cancelled_flights"] = cancelled
+        data["hermes"]["delayed_flights"] = delayed
+        data["hermes"]["airport_status"] = status
+        data["hermes"]["note"] = "обновлено вручную через Telegram"
+
+        with open("today_data.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+
+        bot.reply_to(
+            message,
+            f"Hermes обновлён: отмены={cancelled}, задержки={delayed}, статус={status}"
+        )
+
+    except Exception as e:
+        bot.reply_to(message, f"Ошибка ввода Hermes: {e}")
 @bot.message_handler(commands=['start'])
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
