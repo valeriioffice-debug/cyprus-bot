@@ -51,19 +51,29 @@ def build_hermes_status(total_cancelled, total_delayed):
 
 
 def update_today_json():
-    lca_html = fetch_page(LCA_URL)
-    pfo_html = fetch_page(PFO_URL)
+    try:
+        lca_html = fetch_page(LCA_URL)
+        pfo_html = fetch_page(PFO_URL)
 
-    lca = parse_hermes_page(lca_html)
-    pfo = parse_hermes_page(pfo_html)
+        lca = parse_hermes_page(lca_html)
+        pfo = parse_hermes_page(pfo_html)
 
-    total_cancelled = lca["cancelled"] + pfo["cancelled"]
-    total_delayed = lca["delayed"] + pfo["delayed"]
+        total_cancelled = lca["cancelled"] + pfo["cancelled"]
+        total_delayed = lca["delayed"] + pfo["delayed"]
 
-    airport_status, disruption_level, note = build_hermes_status(
-        total_cancelled,
-        total_delayed
-    )
+        airport_status, disruption_level, note = build_hermes_status(
+            total_cancelled,
+            total_delayed
+        )
+
+    except Exception as e:
+        print("Hermes fetch failed:", e)
+
+        total_cancelled = 0
+        total_delayed = 0
+        airport_status = "unknown"
+        disruption_level = "low"
+        note = "данные временно недоступны"
 
     today_data = {
         "date": datetime.now().strftime("%Y-%m-%d"),
@@ -81,14 +91,8 @@ def update_today_json():
             "note": note
         },
         "summary": {
-            "risk_level": "yellow" if disruption_level == "medium" else ("red" if disruption_level == "high" else "green"),
-            "message": (
-                "Есть заметные сбои по Hermes"
-                if disruption_level == "high"
-                else "Есть отдельные проблемы по Hermes"
-                if disruption_level == "medium"
-                else "По Hermes массовых сбоев не видно"
-            )
+            "risk_level": "yellow",
+            "message": "Hermes: данные частично недоступны"
         }
     }
 
